@@ -1,0 +1,9 @@
+# Generated configuration
+conf/boot-*
+conf/composer
+
+# Log files of nodes
+var
+
+# database
+storage/database.db
