@@ -6,12 +6,12 @@
 			{
 				"name" : "CohorteAPI-database",
 				"factory" : "cohorteapi.database_factory",
-				"isolate": "CohorteAPI-isolate"
+				"isolate": "cohorteapi-isolate"
 			}
 			,{
 				"name" : "CohorteAPI-records",
 				"factory" : "cohorteapi.records_factory",
-				"isolate": "CohorteAPI-isolate"
+				"isolate": "cohorteapi-isolate"
 			}
 		]
 	}

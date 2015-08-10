@@ -19,11 +19,15 @@ __version__ = ".".join(str(x) for x in __version_info__)
 import logging
 _logger = logging.getLogger(__name__)
 
-class AbstractFacility(metaclass=ABCMeta):
+class AbstractFacilities(metaclass=ABCMeta):
     """
-    Abstract Facility
+    Abstract Facilities
     """
 
     @abstractmethod
     def getRecord(self):
+        pass
+
+    @abstractmethod
+    def __makeTableDef__(self):
         pass
