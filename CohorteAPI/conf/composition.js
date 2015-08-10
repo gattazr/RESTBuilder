@@ -4,14 +4,14 @@
 		"name": "CohorteAPI",
 		"components": [
 			{
-				"name" : "cohorte-api-database",
+				"name" : "CohorteAPI-database",
 				"factory" : "cohorteapi.database_factory",
-				"isolate": "api"
+				"isolate": "CohorteAPI-isolate"
 			}
 			,{
-				"name" : "cohorte-api-records",
+				"name" : "CohorteAPI-records",
 				"factory" : "cohorteapi.records_factory",
-				"isolate": "api"
+				"isolate": "CohorteAPI-isolate"
 			}
 		]
 	}
