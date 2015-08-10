@@ -14,6 +14,10 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base, DeclarativeMeta
 # Abstract class and methods
 from abc import ABCMeta, abstractmethod
+# json
+import json
+# os
+import os
 
 # Version information
 __version_info__ = (0, 0, 1)
@@ -36,24 +40,12 @@ class Database(object):
     Database handler
     """
 
-    def __init__(self):
-        """
-        Initialisation of the database handler
-        """
-        # TODO: log creation of engine, base and session maker
-        # TODO: get infos from a config file (import cohorte to get path ot config folder)
-        wEngine = 'sqlite:////Users/gattazr/development/cohorte/applications/cohorte-licences/cohorte-licences/storage/database.db'
-
-        self._engine = create_engine(wEngine)
-        self._base = declarative_base(metaclass=DeclarativeABCMeta)
-        self._sessionmaker = sessionmaker(bind=self._engine, expire_on_commit=False)
-
     def session(self):
         """
         Return a newly created session on the database
         """
-        # TODO: log creation of session
         wDBSession = self._sessionmaker()
+        _logger.info('Creation of database session : %r', wDBSession)
         return wDBSession
 
     def base(self):
@@ -69,3 +61,31 @@ class Database(object):
         """
         # TODO: log create/update of tables in database
         self._base.metadata.create_all(self._engine)
+
+    @Validate
+    def validate(self, aContext):
+        """
+        Initialisation of the database component
+        """
+        _logger.debug('Validating DB')
+
+        # Loading the config
+        wConfig = {}
+        wBasePath = aContext.get_property('cohorte.base')
+        _logger.debug('Base path : ', wBasePath)
+
+        wConfigFilePath = os.path.join(wBasePath, "conf/cohorteapi/database.js")
+        _logger.debug('database config file : %s', wConfigFilePath)
+        # Read the json file
+        with open(wConfigFilePath) as wConfigFile:
+            wConfig = json.load(wConfigFile)
+        _logger.debug('Config : %s', wConfig)
+
+
+        # setting up the component
+        self._engine = create_engine(wConfig['connexion_string'])
+        _logger.info('Creation of engine : %r', self._engine)
+        self._base = declarative_base(metaclass=DeclarativeABCMeta)
+        _logger.info('Creation of base : %r', self._base)
+        self._sessionmaker = sessionmaker(bind=self._engine, expire_on_commit=False)
+        _logger.info('Creation of datatbase sessions provider : %r', self._sessionmaker)
