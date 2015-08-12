@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -- Content-Encoding: UTF-8 --
 """
-cohorteapi Package
+restbuilder Package
 
 This package contains the core set of classes and components of an API built with cohorte and sqlalchemy
 

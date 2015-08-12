@@ -9,7 +9,7 @@
 # Abstract class and methods
 from abc import ABCMeta, abstractmethod
 # import utils functions
-import cohorteapi.models.utils as utils
+import restbuilder.models.utils as utils
 import datetime
 import time
 # sqlalchemy

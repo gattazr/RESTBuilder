@@ -12,7 +12,7 @@ from abc import ABCMeta, abstractmethod
 # json
 import json
 # View utils
-import cohorteapi.views.utils as utils
+import restbuilder.views.utils as utils
 
 # Version information
 __version_info__ = (0, 0, 1)

@@ -12,7 +12,7 @@ from pelix.ipopo.decorators import ComponentFactory, Provides, Validate, Require
 from sqlalchemy import Column, Integer, String, ForeignKey, TIMESTAMP
 from sqlalchemy.orm import relationship
 # Abstract
-from cohorteapi.models.record import AbstractRecord
+from restbuilder.models.record import AbstractRecord
 
 # Version information
 __version_info__ = (0, 0, 1)
@@ -23,9 +23,9 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
-@ComponentFactory("cohorteapi.records_factory")
-@Requires("_db", "cohorteapi.database")
-@Provides("cohorteapi.records")
+@ComponentFactory("restbuilder.records_factory")
+@Requires("_db", "restbuilder.database")
+@Provides("restbuilder.records")
 class Records(object):
     """
     Handler of the classes mapping the database

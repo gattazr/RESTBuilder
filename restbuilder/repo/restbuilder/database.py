@@ -33,8 +33,8 @@ class DeclarativeABCMeta(DeclarativeMeta, ABCMeta):
     """
     pass
 
-@ComponentFactory("cohorteapi.database_factory")
-@Provides("cohorteapi.database")
+@ComponentFactory("restbuilder.database_factory")
+@Provides("restbuilder.database")
 class Database(object):
     """
     Database handler
@@ -74,7 +74,7 @@ class Database(object):
         wBasePath = aContext.get_property('cohorte.base')
         _logger.debug('Base path : ', wBasePath)
 
-        wConfigFilePath = os.path.join(wBasePath, "conf/cohorteapi/database.js")
+        wConfigFilePath = os.path.join(wBasePath, "conf/restbuilder/database.js")
         _logger.debug('database config file : %s', wConfigFilePath)
         # Read the json file
         with open(wConfigFilePath) as wConfigFile:
